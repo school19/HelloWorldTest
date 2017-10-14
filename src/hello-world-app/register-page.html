@@ -1,32 +1,165 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="register-page">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class RegisterPage extends Polymer.Element {
-      static get is() { return 'register-page'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'register-page'
-          }
-        };
-      }
-    }
+            paper-input {
+                margin: 8px;
+            }
 
-    window.customElements.define(RegisterPage.is, RegisterPage);
-  </script>
+            paper-dropdown-menu {
+                margin: 8px;
+            }
+
+            paper-button {
+                margin: 8px;
+            }
+        </style>
+        <paper-card>
+            <iron-form method="post" allow-redirect="true" action="/api/register.php" id="registerForm">
+                <paper-item>
+                    <paper-input label="First name" required auto-validate pattern="[a-zA-Z]{0, 255}"
+                                 value="{{first_name}}"></paper-input>
+                    <paper-input label="Last name" required auto-validate pattern="[a-zA-Z]{0, 255}"
+                                 value="{{last_name}}"></paper-input>
+                </paper-item>
+                <paper-item>
+                    <paper-input label="Address 1" required auto-validate pattern="[0-9]*\s([a-zA-Z]*\s)*"
+                                 value="{{address1}}"></paper-input>
+                    <paper-input label="Address 2" value="{{address2}}"></paper-input>
+                    <paper-input label="City" value="{{city}}"></paper-input>
+                </paper-item>
+                <paper-item>
+                    <gold-zip-input label="Zip Code" required auto-validate value="{{zip_code}}"></gold-zip-input>
+                    <paper-dropdown-menu required label="State">
+                        <paper-listbox slot="dropdown-content">
+                            <template is="dom-repeat" items="[[state_list]]">
+                                <paper-item value="[[item]]">[[item]]</paper-item>
+                            </template>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                    <paper-dropdown-menu required label="Country">
+                        <paper-listbox slot="dropdown-content">
+                            <paper-item value="United States">United States</paper-item>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </paper-item>
+                <paper-button raised on-click="submit">Register</paper-button>
+            </iron-form>
+        </paper-card>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class RegisterPage extends Polymer.Element {
+            static get is() {
+                return 'register-page';
+            }
+
+            submit(){
+                var form = this.$.registerForm;
+                form.submit();
+            }
+
+            static get properties() {
+                return {
+                    first_name: {
+                        type: String
+                    },
+                    last_name: {
+                        type: String
+                    },
+                    address1: {
+                        type: String
+                    },
+                    address2: {
+                        type: String
+                    },
+                    city: {
+                        type: String
+                    },
+                    state: {
+                        type: String
+                    },
+                    zip_code: {
+                        type: String
+                    },
+                    country: {
+                        type: String
+                    },
+
+                    state_list: {
+                        value: [
+                            "Alabama",
+                            "Alaska",
+                            "Arizona",
+                            "Arkansas",
+                            "California",
+                            "Colorado",
+                            "Connecticut",
+                            "Delaware",
+                            "Florida",
+                            "Georgia",
+                            "Hawaii",
+                            "Idaho",
+                            "Illinois",
+                            "Indiana",
+                            "Iowa",
+                            "Kansas",
+                            "Kentucky",
+                            "Louisiana",
+                            "Maine",
+                            "Maryland",
+                            "Massachusetts",
+                            "Michigan",
+                            "Minnesota",
+                            "Mississippi",
+                            "Missouri",
+                            "Montana",
+                            "Nebraska",
+                            "Nevada",
+                            "New Hampshire",
+                            "New Jersey",
+                            "New Mexico",
+                            "New York",
+                            "North Carolina",
+                            "North Dakota",
+                            "Ohio",
+                            "Oklahom",
+                            "Oregon",
+                            "Pennsylvania",
+                            "Rhode Island",
+                            "South Dakota",
+                            "Tennessee",
+                            "Texas",
+                            "Utah",
+                            "Vermont",
+                            "Virginia",
+                            "Washington",
+                            "West Virginia",
+                            "Wisconsin",
+                            "Wyoming"
+                        ]
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(RegisterPage.is, RegisterPage);
+    </script>
 </dom-module>

@@ -3,7 +3,15 @@
   "description": "Coding test for HelloWorld",
   "main": "index.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-input": "PolymerElements/paper-input#^2.0.2",
+    "iron-form": "PolymerElements/iron-form#^2.0.1",
+    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0",
+    "paper-card": "PolymerElements/paper-card#^2.0.0",
+    "gold-zip-input": "PolymerElements/gold-zip-input#^2.0.0",
+    "paper-button": "PolymerElements/paper-button#^2.0.0"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
