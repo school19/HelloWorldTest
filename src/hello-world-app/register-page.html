@@ -30,33 +30,30 @@
         <paper-card>
             <iron-form method="post" allow-redirect="true" action="/api/register.php" id="registerForm">
                 <paper-item>
-                    <paper-input label="First name" required auto-validate pattern="[a-zA-Z]{0, 255}"
-                                 value="{{first_name}}"></paper-input>
-                    <paper-input label="Last name" required auto-validate pattern="[a-zA-Z]{0, 255}"
-                                 value="{{last_name}}"></paper-input>
+                    <paper-input name="first_name" label="First name" required auto-validate pattern="[a-zA-Z]{0, 255}"></paper-input>
+                    <paper-input name="last_name" label="Last name" required auto-validate pattern="[a-zA-Z]{0, 255}"></paper-input>
                 </paper-item>
                 <paper-item>
-                    <paper-input label="Address 1" required auto-validate pattern="[0-9]*\s([a-zA-Z]*\s)*"
-                                 value="{{address1}}"></paper-input>
-                    <paper-input label="Address 2" value="{{address2}}"></paper-input>
-                    <paper-input label="City" value="{{city}}"></paper-input>
+                    <paper-input name="address1" label="Address 1" required auto-validate pattern="[0-9]*\s([a-zA-Z]*\s)*"></paper-input>
+                    <paper-input name="address2" label="Address 2"></paper-input>
+                    <paper-input name="city" label="City"></paper-input>
                 </paper-item>
                 <paper-item>
-                    <gold-zip-input label="Zip Code" required auto-validate value="{{zip_code}}"></gold-zip-input>
-                    <paper-dropdown-menu required label="State">
+                    <gold-zip-input name="zip_code" label="Zip Code" required auto-validate></gold-zip-input>
+                    <paper-dropdown-menu name="state" required label="State">
                         <paper-listbox slot="dropdown-content">
                             <template is="dom-repeat" items="[[state_list]]">
                                 <paper-item value="[[item]]">[[item]]</paper-item>
                             </template>
                         </paper-listbox>
                     </paper-dropdown-menu>
-                    <paper-dropdown-menu required label="Country">
+                    <paper-dropdown-menu name="country" required label="Country">
                         <paper-listbox slot="dropdown-content">
                             <paper-item value="United States">United States</paper-item>
                         </paper-listbox>
                     </paper-dropdown-menu>
                 </paper-item>
-                <paper-button raised on-click="submit">Register</paper-button>
+                <input type="submit">
             </iron-form>
         </paper-card>
     </template>
