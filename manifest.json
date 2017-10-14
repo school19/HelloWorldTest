@@ -1,0 +1,7 @@
+{
+  "name": "HelloWorldTest",
+  "short_name": "HelloWorldTest",
+  "description": "Coding test for HelloWorld",
+  "start_url": "/",
+  "display": "standalone"
+}

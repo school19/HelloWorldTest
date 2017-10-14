@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="register-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class RegisterPage extends Polymer.Element {
+      static get is() { return 'register-page'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'register-page'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(RegisterPage.is, RegisterPage);
+  </script>
+</dom-module>
