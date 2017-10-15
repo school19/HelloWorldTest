@@ -33,6 +33,6 @@ if(!$query_result)
     http_response_code(500);
     echo "Database query failed: (" .$database_connection->errno .") " . $database_connection->error;
 }
-$result_array = $query_result->fetch_all();
+$result_array = $query_result->fetch_all(MYSQLI_ASSOC);
 
 echo json_encode($result_array);

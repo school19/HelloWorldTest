@@ -1,0 +1,108 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="admin-page">
+    <template>
+        <style is="iron-flex iron-flex-alignment">
+            :host {
+                display:flex;
+            }
+
+            .name{
+                width: 128px;
+            }
+
+            .address{
+                width: 196px;
+            }
+
+            .zip{
+                width:96px;
+            }
+
+            .city{
+                width: 196px;
+            }
+
+            .state{
+                width: 96px;
+            }
+
+            .country{
+                width: 128px;
+            }
+
+            .date{
+                width: 256px;
+            }
+
+            .header{
+                background-color: #9b9b9b
+            }
+
+            paper-item{
+                border-bottom: solid thin black;
+            }
+
+        </style>
+        <iron-ajax auto url="http://ec2-52-55-191-39.compute-1.amazonaws.com/api/query.php"
+                   handle-as="json"
+                   last-response="{{registrants}}"
+                    id="registrant_request">
+        </iron-ajax>
+        <div class="fullbleed layout vertical">
+        <paper-item class="header layout horizontal">
+            <div class="name">First name</div>
+            <div class="name">Last name</div>
+            <div class="address">Address 1</div>
+            <div class="address">Address 2</div>
+            <div class="city">City</div>
+            <div class="state">State</div>
+            <div class="zip">Zip</div>
+            <div class="country">Country</div>
+            <div class="date">Date</div>
+        </paper-item>
+            <template is="dom-repeat" items="[[registrants]]">
+                <paper-item class="layout horizontal">
+                    <div class="name">[[item.first_name]]</div>
+                    <div class="name">[[item.last_name]]</div>
+                    <div class="address">[[item.address1]]</div>
+                    <div class="address">[[item.address2]]</div>
+                    <div class="city">[[item.city]]</div>
+                    <div class="state">[[item.state]]</div>
+                    <div class="zip">[[item.zip_code]]</div>
+                    <div class="country">[[item.country]]</div>
+                    <div class="date">[[item.registration_time]]</div>
+                </paper-item>
+            </template>
+        </div>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class AdminPage extends Polymer.Element {
+            static get is() { return 'admin-page'; }
+            static get properties() {
+                return {
+                    registrants:{
+                        value:[]
+                    }
+                };
+            }
+
+            ready(){
+                super.ready();
+                this.$.registrant_request.generateRequest();
+            }
+        }
+
+        window.customElements.define(AdminPage.is, AdminPage);
+    </script>
+</dom-module>
+

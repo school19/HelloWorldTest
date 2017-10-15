@@ -12,7 +12,8 @@
     "paper-card": "PolymerElements/paper-card#^2.0.0",
     "gold-zip-input": "PolymerElements/gold-zip-input#^2.0.0",
     "paper-button": "PolymerElements/paper-button#^2.0.0",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0"
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.5"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
