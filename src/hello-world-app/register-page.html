@@ -26,34 +26,40 @@
             paper-button {
                 margin: 8px;
             }
+
+            gold-zip-input {
+                margin: 8px;
+            }
         </style>
         <paper-card>
-            <iron-form method="post" allow-redirect="true" action="/api/register.php" id="registerForm">
-                <paper-item>
-                    <paper-input name="first_name" label="First name" required auto-validate pattern="[a-zA-Z]{0, 255}"></paper-input>
-                    <paper-input name="last_name" label="Last name" required auto-validate pattern="[a-zA-Z]{0, 255}"></paper-input>
-                </paper-item>
-                <paper-item>
-                    <paper-input name="address1" label="Address 1" required auto-validate pattern="[0-9]*\s([a-zA-Z]*\s)*"></paper-input>
-                    <paper-input name="address2" label="Address 2"></paper-input>
-                    <paper-input name="city" label="City"></paper-input>
-                </paper-item>
-                <paper-item>
-                    <gold-zip-input name="zip_code" label="Zip Code" required auto-validate></gold-zip-input>
-                    <paper-dropdown-menu name="state" required label="State">
-                        <paper-listbox slot="dropdown-content">
-                            <template is="dom-repeat" items="[[state_list]]">
-                                <paper-item value="[[item]]">[[item]]</paper-item>
-                            </template>
-                        </paper-listbox>
-                    </paper-dropdown-menu>
-                    <paper-dropdown-menu name="country" required label="Country">
-                        <paper-listbox slot="dropdown-content">
-                            <paper-item value="United States">United States</paper-item>
-                        </paper-listbox>
-                    </paper-dropdown-menu>
-                </paper-item>
-                <input type="submit">
+            <iron-form allow-redirect="true" id="registerForm">
+                <form method="post" action="/api/register.php">
+                    <div>
+                        <paper-input name="first_name" label="First name" required pattern="[a-zA-Z\-']*"></paper-input>
+                        <paper-input name="last_name" label="Last name" required pattern="[a-zA-Z\-']*"></paper-input>
+                    </div>
+                    <div>
+                        <paper-input required name="address1" label="Address 1" required pattern="[0-9]*\s([0-9a-zA-Z]*\s?\-?)*"></paper-input>
+                        <paper-input name="address2" label="Address 2"></paper-input>
+                        <paper-input name="city" label="City" required pattern="([a-zA-Z]*\s?)*"></paper-input>
+                    </div>
+                    <div>
+                        <gold-zip-input name="zip_code" label="Zip Code"></gold-zip-input>
+                        <paper-dropdown-menu required name="state" label="State">
+                            <paper-listbox slot="dropdown-content">
+                                <template is="dom-repeat" items="[[state_list]]">
+                                    <paper-item value="[[item]]">[[item]]</paper-item>
+                                </template>
+                            </paper-listbox>
+                        </paper-dropdown-menu>
+                        <paper-dropdown-menu required name="country" label="Country">
+                            <paper-listbox slot="dropdown-content">
+                                <paper-item value="United States">United States</paper-item>
+                            </paper-listbox>
+                        </paper-dropdown-menu>
+                    </div>
+                    <paper-button raised on-click="submit">Submit</paper-button>
+                </form>
             </iron-form>
         </paper-card>
     </template>
@@ -68,38 +74,13 @@
                 return 'register-page';
             }
 
-            submit(){
+            submit() {
                 var form = this.$.registerForm;
                 form.submit();
             }
 
             static get properties() {
                 return {
-                    first_name: {
-                        type: String
-                    },
-                    last_name: {
-                        type: String
-                    },
-                    address1: {
-                        type: String
-                    },
-                    address2: {
-                        type: String
-                    },
-                    city: {
-                        type: String
-                    },
-                    state: {
-                        type: String
-                    },
-                    zip_code: {
-                        type: String
-                    },
-                    country: {
-                        type: String
-                    },
-
                     state_list: {
                         value: [
                             "Alabama",
