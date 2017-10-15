@@ -7,10 +7,11 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="register-page">
     <template>
-        <style>
+        <style include="iron-flex iron-flex-alignment">
             :host {
                 display: block;
             }
@@ -34,17 +35,16 @@
         <paper-card>
             <iron-form allow-redirect="true" id="registerForm">
                 <form method="post" action="/api/register.php">
-                    <div>
+                    <div class="layout horizontal">
                         <paper-input name="first_name" label="First name" required pattern="[a-zA-Z\-']*"></paper-input>
                         <paper-input name="last_name" label="Last name" required pattern="[a-zA-Z\-']*"></paper-input>
                     </div>
-                    <div>
+                    <div class="layout horizontal">
                         <paper-input required name="address1" label="Address 1" required pattern="[0-9]*\s([0-9a-zA-Z]*\s?\-?)*"></paper-input>
                         <paper-input name="address2" label="Address 2"></paper-input>
                         <paper-input name="city" label="City" required pattern="([a-zA-Z]*\s?)*"></paper-input>
                     </div>
-                    <div>
-                        <gold-zip-input name="zip_code" label="Zip Code"></gold-zip-input>
+                    <div class="layout horizontal">
                         <paper-dropdown-menu required name="state" label="State">
                             <paper-listbox slot="dropdown-content">
                                 <template is="dom-repeat" items="[[state_list]]">
@@ -52,6 +52,7 @@
                                 </template>
                             </paper-listbox>
                         </paper-dropdown-menu>
+                        <gold-zip-input name="zip_code" label="Zip Code"></gold-zip-input>
                         <paper-dropdown-menu required name="country" label="Country">
                             <paper-listbox slot="dropdown-content">
                                 <paper-item value="United States">United States</paper-item>
