@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="confirmation-page">
     <template>
@@ -7,7 +8,11 @@
                 display: block;
             }
         </style>
-        <h2>Hello [[prop1]]!</h2>
+        <paper-card>
+            <div class="card-content">
+                Thank you for registering!
+            </div>
+        </paper-card>
     </template>
 
     <script>
@@ -19,10 +24,6 @@
             static get is() { return 'confirmation-page'; }
             static get properties() {
                 return {
-                    prop1: {
-                        type: String,
-                        value: 'confirmation-page'
-                    }
                 };
             }
         }
